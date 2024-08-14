@@ -60,6 +60,9 @@ function App() {
     <div className="App">
       <h1>Comments Section</h1>
       <CommentForm addComment={addComment} />
+      <button className="sort" onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}>
+    Sort By: Date and Time {sortOrder === 'asc' ? '↓' : '↑'}
+</button>
       {sortedComments.length > 0 ? (
         <CommentList
           comments={sortedComments}
@@ -68,11 +71,9 @@ function App() {
           addReply={addReply}
         />
       ) : (
-        <p>No comments to display</p>
+        <p></p>
       )}
-      <button onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}>
-        Sort by Date: {sortOrder === 'asc' ? 'Oldest First' : 'Newest First'}
-      </button>
+    
     </div>
   );
 }
