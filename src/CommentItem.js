@@ -45,20 +45,24 @@ function CommentItem({ comment, deleteComment, editComment, addReply }) {
         </div>
       </div>
       {showReplyForm && (
-        <div className="reply-form">
-          <input
-            type="text"
-            placeholder="Your name"
-            value={replyName}
-            onChange={(e) => setReplyName(e.target.value)}
-          />
-          <textarea
-            placeholder="Reply..."
-            value={replyText}
-            onChange={(e) => setReplyText(e.target.value)}
-          ></textarea>
-          <button onClick={handleReply}>Post Reply</button>
-        </div>
+        <div className="reply-form" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        <input
+          type="text"
+          placeholder="Your name"
+          value={replyName}
+          onChange={(e) => setReplyName(e.target.value)}
+          style={{ padding: '8px', width: '100%', borderRadius: '4px', border: '1px solid #ccc' }}
+        />
+        <textarea
+          placeholder="Reply..."
+          value={replyText}
+          onChange={(e) => setReplyText(e.target.value)}
+          style={{ padding: '8px', width: '100%', borderRadius: '4px', border: '1px solid #ccc' }}
+        ></textarea>
+        <button onClick={handleReply} style={{ alignSelf: 'flex-end', padding: '8px 12px', backgroundColor: '#007bff', color: '#fff', borderRadius: '4px', border: 'none' }}>
+          Post Reply
+        </button>
+      </div>
       )}
       {comment.replies && comment.replies.length > 0 && (
         <ul className="replies">

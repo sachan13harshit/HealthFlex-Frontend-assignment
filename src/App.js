@@ -7,7 +7,6 @@ function App() {
   const [comments, setComments] = useState([]);
   const [sortOrder, setSortOrder] = useState('desc');
   const [isLoaded, setIsLoaded] = useState(false);
-
   useEffect(() => {
     try {
       const storedComments = JSON.parse(localStorage.getItem('comments') || '[]');
