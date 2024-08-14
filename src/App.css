@@ -1,25 +1,23 @@
-/* General Reset */
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Body Styling */
 body {
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
   padding: 20px;
 }
 
-/* Main Comment Section */
+
 .comments-section {
   max-width: 800px;
   margin: 0 auto;
-  /* padding: 20px; */
+ 
 }
 
-/* Comment Form */
 .comment-form {
   background-color: #ffffff;
   padding: 20px;
@@ -27,6 +25,9 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   height: 23vh;
+  width: 80vw;
+  margin-left: 10vw;
+  margin-right: 10vw;
 }
 
 .comment-form input{
@@ -56,13 +57,16 @@ h1 {
   text-align: center;
 }
 
-/* Comment Item Styling */
+
 .comment-item {
   background-color: white;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin-bottom: 15px;
+  width: 80vw;;
+  margin-left : 10vw;
+  margin-right: 10vw;
 }
 
 .comment-item strong {
@@ -99,7 +103,7 @@ h1 {
   text-decoration: underline;
 }
 
-/* Reply Form Styling */
+
 .reply-form {
   display: flex;
   flex-direction: column;
@@ -120,7 +124,7 @@ h1 {
 .reply-form button {
   align-self: flex-end;
   padding: 8px 16px;
-  background-color: #1877f2; /* Facebook blue color */
+  background-color: #1877f2; 
   color: #fff;
   border-radius: 6px;
   border: none;
@@ -128,7 +132,7 @@ h1 {
   font-weight: bold;
 }
 
-/* Replies Section Styling */
+
 .replies {
   list-style: none;
   padding-left: 0;
@@ -168,13 +172,12 @@ h1 {
   border-color: #007bff;
 }
 
-/* Comment List Styling */
 .comment-list {
   list-style-type: none;
   padding: 0;
 }
 
-/* Sort Button */
+
 .sort {
   background-color: transparent;
   border: none;
@@ -185,6 +188,7 @@ h1 {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  margin-left: 80vw;
 }
 
 .sort:hover {
