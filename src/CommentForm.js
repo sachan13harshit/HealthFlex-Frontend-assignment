@@ -1,37 +1,35 @@
-// CommentForm.js
 import React, { useState } from 'react';
 
-function CommentForm({ addComment, parentId = null }) {
+function CommentForm({ addComment }) {
   const [name, setName] = useState('');
-  const [comment, setComment] = useState('');
+  const [text, setText] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name.trim() || !comment.trim()) {
-      alert('Please enter both name and comment');
-      return;
+    if (name.trim() && text.trim()) {
+      addComment({ name, text });
+      setName('');
+      setText('');
     }
-    addComment({ name, comment, date: new Date().toISOString(), parentId });
-    setName('');
-    setComment('');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="comment-form">
+      <h2>Comment</h2>
       <input
         type="text"
-        placeholder="Name"
+        placeholder="Your name"
         value={name}
         onChange={(e) => setName(e.target.value)}
         required
       />
       <textarea
-        placeholder="Comment"
-        value={comment}
-        onChange={(e) => setComment(e.target.value)}
+        placeholder="Your comment"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
         required
       ></textarea>
-      <button type="submit">POST</button>
+      <button type="submit">Post Comment</button>
     </form>
   );
 }

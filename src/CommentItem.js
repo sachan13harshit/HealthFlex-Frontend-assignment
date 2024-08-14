@@ -1,62 +1,77 @@
-// CommentItem.js
 import React, { useState } from 'react';
-import CommentForm from './CommentForm';
 
-function CommentItem({ comment, setComments, comments }) {
+function CommentItem({ comment, deleteComment, editComment, addReply }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [editedComment, setEditedComment] = useState(comment.comment);
+  const [editedText, setEditedText] = useState(comment.text);
+  const [replyText, setReplyText] = useState('');
+  const [replyName, setReplyName] = useState('');
   const [showReplyForm, setShowReplyForm] = useState(false);
 
   const handleEdit = () => {
-    if (editedComment.trim()) {
-      setComments(comments.map(c => 
-        c.id === comment.id ? { ...c, comment: editedComment } : c
-      ));
+    if (editedText.trim()) {
+      editComment(comment.id, editedText);
       setIsEditing(false);
     }
   };
 
-  const handleDelete = () => {
-    setComments(comments.filter(c => c.id !== comment.id));
-  };
-
-  const addReply = (reply) => {
-    setComments(comments.map(c => 
-      c.id === comment.id 
-        ? { ...c, replies: [...c.replies, { ...reply, id: Date.now() }] }
-        : c
-    ));
-    setShowReplyForm(false);
+  const handleReply = () => {
+    if (replyText.trim() && replyName.trim()) {
+      addReply(comment.id, { name: replyName, text: replyText });
+      setReplyText('');
+      setReplyName('');
+      setShowReplyForm(false);
+    }
   };
 
   return (
-    <div className="comment-item">
-      <h3>{comment.name}</h3>
-      <p>{new Date(comment.date).toLocaleString()}</p>
-      {isEditing ? (
-        <textarea
-          value={editedComment}
-          onChange={(e) => setEditedComment(e.target.value)}
-        ></textarea>
-      ) : (
-        <p>{comment.comment}</p>
+    <li className="comment-item">
+      <div className="content">
+        <strong>{comment.name}</strong>
+        {isEditing ? (
+          <textarea
+            value={editedText}
+            onChange={(e) => setEditedText(e.target.value)}
+          ></textarea>
+        ) : (
+          <p>{comment.text}</p>
+        )}
+        <span className="date">{new Date(comment.id).toLocaleDateString()}</span>
+        <div className="actions">
+          <button onClick={() => setShowReplyForm(!showReplyForm)}>Reply</button>
+          <button onClick={() => deleteComment(comment.id)}>Delete</button>
+          <button onClick={() => setIsEditing(!isEditing)}>
+            {isEditing ? 'Save' : 'Edit'}
+          </button>
+        </div>
+      </div>
+      {showReplyForm && (
+        <div className="reply-form">
+          <input
+            type="text"
+            placeholder="Your name"
+            value={replyName}
+            onChange={(e) => setReplyName(e.target.value)}
+          />
+          <textarea
+            placeholder="Reply..."
+            value={replyText}
+            onChange={(e) => setReplyText(e.target.value)}
+          ></textarea>
+          <button onClick={handleReply}>Post Reply</button>
+        </div>
       )}
-      <button onClick={() => setIsEditing(!isEditing)}>
-        {isEditing ? 'Save' : 'Edit'}
-      </button>
-      {isEditing && <button onClick={handleEdit}>Save</button>}
-      <button onClick={handleDelete}>Delete</button>
-      <button onClick={() => setShowReplyForm(!showReplyForm)}>Reply</button>
-      {showReplyForm && <CommentForm addComment={addReply} parentId={comment.id} />}
-      {comment.replies && comment.replies.map(reply => (
-        <CommentItem 
-          key={reply.id} 
-          comment={reply} 
-          setComments={setComments}
-          comments={comments}
-        />
-      ))}
-    </div>
+      {comment.replies && comment.replies.length > 0 && (
+        <ul className="replies">
+          {comment.replies.map(reply => (
+            <li key={reply.id} className="reply-item">
+              <strong>{reply.name}</strong>
+              <p>{reply.text}</p>
+              <span className="date">{new Date(reply.id).toLocaleDateString()}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </li>
   );
 }
 

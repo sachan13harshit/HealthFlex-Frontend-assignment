@@ -17,11 +17,16 @@ body {
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   margin-bottom: 20px;
+  width: 75vw;
+  margin-left: 15vw;
+  margin-right : 15vw;
+  height : 22vh;
 }
+
 
 .comment-form input,
 .comment-form textarea {
-  width: 100%;
+  width: 72vw;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ddd;
@@ -36,6 +41,10 @@ body {
   border-radius: 4px;
   cursor: pointer;
   float: right;
+}
+
+h1{
+  text-align: center;
 }
 
 .sort-by {
