@@ -34,8 +34,20 @@ function App() {
     setComments(prevComments => [...prevComments, { ...newComment, id: Date.now(), replies: [] }]);
   };
 
-  const deleteComment = (id) => {
-    setComments(prevComments => prevComments.filter(comment => comment.id !== id));
+  const deleteComment = (commentId, replyId = null) => {
+    if (replyId) {
+      setComments(comments.map(comment => {
+        if (comment.id === commentId) {
+          return {
+            ...comment,
+            replies: comment.replies.filter(reply => reply.id !== replyId)
+          };
+        }
+        return comment;
+      }));
+    } else {
+      setComments(comments.filter(comment => comment.id !== commentId));
+    }
   };
 
   const editComment = (id, text) => {

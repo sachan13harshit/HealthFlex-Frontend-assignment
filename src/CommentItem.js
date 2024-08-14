@@ -35,14 +35,50 @@ function CommentItem({ comment, deleteComment, editComment, addReply }) {
     }
   };
 
+  const DeleteButton = ({ onDelete }) => (
+    <button 
+      onClick={onDelete}
+      style={{
+        position: 'absolute',
+        top: '50%',
+        right: '-12px',
+        transform: 'translateY(-50%)',
+        background: '#f44336',
+        color: 'white',
+        border: 'none',
+        borderRadius: '50%',
+        width: '24px',
+        height: '24px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        cursor: 'pointer',
+        fontSize: '14px',
+        boxShadow: '0 2px 5px rgba(0,0,0,0.2)'
+      }}
+      title="Delete"
+    >
+      🗑️
+    </button>
+  );
+
   return (
-    <li className="comment-item">
+    <li className="comment-item" style={{ 
+      position: 'relative', 
+      border: '1px solid #ccc', 
+      borderRadius: '4px',
+      padding: '10px', 
+      marginBottom: '10px',
+      paddingRight: '30px'
+    }}>
+      <DeleteButton onDelete={() => deleteComment(comment.id)} />
       <div className="content">
         <strong>{comment.name}</strong>
         {isEditing ? (
           <textarea
             value={editedText}
             onChange={(e) => setEditedText(e.target.value)}
+            style={{ padding: '8px', width: '100%', borderRadius: '4px', border: '1px solid #ccc' }}
           ></textarea>
         ) : (
           <p>{comment.text}</p>
@@ -55,7 +91,6 @@ function CommentItem({ comment, deleteComment, editComment, addReply }) {
           }}>
             {showReplyForm ? 'Cancel Reply' : 'Reply'}
           </button>
-          <button onClick={() => deleteComment(comment.id)}>Delete</button>
           <button onClick={() => {
             if (isEditing) {
               handleEdit();
@@ -91,7 +126,8 @@ function CommentItem({ comment, deleteComment, editComment, addReply }) {
       {comment.replies && comment.replies.length > 0 && (
         <ul className="replies">
           {comment.replies.map(reply => (
-            <li key={reply.id} className="reply-item">
+            <li key={reply.id} className="reply-item" style={{ position: 'relative', paddingRight: '30px' }}>
+              <DeleteButton onDelete={() => deleteComment(comment.id, reply.id)} />
               <strong>{reply.name}</strong>
               <p>{reply.text}</p>
               <span className="date">{new Date(reply.id).toLocaleDateString()}</span>
