@@ -1,32 +1,41 @@
-/* styles.css */
+/* General Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
+/* Body Styling */
 body {
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
-}
-
-.comments-section {
-  max-width: 600px;
-  margin: 0 auto;
   padding: 20px;
 }
 
+/* Main Comment Section */
+.comments-section {
+  max-width: 800px;
+  margin: 0 auto;
+  /* padding: 20px; */
+}
+
+/* Comment Form */
 .comment-form {
-  background-color: white;
+  background-color: #ffffff;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-  width: 75vw;
-  margin-left: 15vw;
-  margin-right : 15vw;
-  height : 22vh;
+  height: 23vh;
 }
 
+.comment-form input{
+  margin-top: 1rem;
+}
 
 .comment-form input,
 .comment-form textarea {
-  width: 72vw;
+  width: 100%;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ddd;
@@ -43,27 +52,22 @@ body {
   float: right;
 }
 
-h1{
+h1 {
   text-align: center;
 }
 
-.sort-by {
-  text-align: right;
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: #666;
-}
-
+/* Comment Item Styling */
 .comment-item {
   background-color: white;
   padding: 15px;
   border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin-bottom: 15px;
 }
 
-.comment-item h3 {
-  margin: 0;
+.comment-item strong {
+  display: block;
+  margin-bottom: 10px;
   font-size: 16px;
 }
 
@@ -71,6 +75,7 @@ h1{
   font-size: 12px;
   color: #666;
   margin-bottom: 10px;
+  display: block;
 }
 
 .comment-item p {
@@ -82,40 +87,31 @@ h1{
   color: #1e90ff;
 }
 
-.comment-item .actions a {
+.comment-item .actions button {
   margin-right: 10px;
-  text-decoration: none;
-}
-
-.delete-button {
-  float: right;
-  background-color: #ccc;
-  color: #333;
+  background: none;
   border: none;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  font-size: 12px;
-  line-height: 20px;
-  text-align: center;
+  color: #1e90ff;
   cursor: pointer;
 }
+
+.comment-item .actions button:hover {
+  text-decoration: underline;
+}
+
+/* Reply Form Styling */
 .reply-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  /* width: 100%; */
   margin-top: 1rem;
-  width: 60vw;
-  margin-left: 5vw;
-  /* border: #000; */
-  border: 1px ; /* Add a border */
-  padding: 16px; 
+  border: 1px solid #ccc;
+  padding: 16px;
+  background-color: #f9f9f9;
 }
 
 .reply-form input,
 .reply-form textarea {
-  width: 100%;
   padding: 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
@@ -124,53 +120,19 @@ h1{
 .reply-form button {
   align-self: flex-end;
   padding: 8px 16px;
-  background-color: #1877f2;  /* Facebook blue color */
+  background-color: #1877f2; /* Facebook blue color */
   color: #fff;
   border-radius: 6px;
   border: none;
   cursor: pointer;
   font-weight: bold;
 }
-.comment-list {
-  list-style-type: none;
-  /* padding: 0; */
-  width: 75vw;
-  margin-left: 10vw;
-  margin-right : 10vw;
-}
 
-.sort{
-  margin-left : 80vw;
-    background-color: transparent;
-    border: none;
-    color: #333;
-    font-size: 14px;
-    cursor: pointer;
-    padding: 8px;
-    display: flex;
-    align-items: center;
-}
-
-.sort:focus {
-    outline: none;
-}
-
-.sort:hover {
-    color: #000;
-}
-
-.sort:after {
-    content: ' ';
-    margin-left: 4px;
-}
-
+/* Replies Section Styling */
 .replies {
   list-style: none;
   padding-left: 0;
   margin-top: 1rem;
-  width : 60vw;
-  margin-left: 5vw;
-  margin-right: 5vw;
 }
 
 .reply-item {
@@ -206,5 +168,34 @@ h1{
   border-color: #007bff;
 }
 
+/* Comment List Styling */
+.comment-list {
+  list-style-type: none;
+  padding: 0;
+}
 
+/* Sort Button */
+.sort {
+  background-color: transparent;
+  border: none;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
+.sort:hover {
+  color: #000;
+}
+
+.sort:focus {
+  outline: none;
+}
+
+.sort:after {
+  content: ' ';
+  margin-left: 4px;
+}
